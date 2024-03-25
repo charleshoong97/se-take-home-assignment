@@ -1,5 +1,11 @@
 import moment from "moment";
-import { ADD_ORDER, ASSIGN_ORDER, COMPLETE_ORDER, OFF_BOT } from "../constant";
+import {
+  ADD_ORDER,
+  ASSIGN_ORDER,
+  COMPLETE_ORDER,
+  OFF_BOT,
+  REMOVE_BOT,
+} from "../constant";
 
 const defaultState = [];
 
@@ -12,6 +18,7 @@ export const orderReducer = (
   switch (type) {
     case ADD_ORDER:
     case OFF_BOT:
+    case REMOVE_BOT:
       return !Boolean(order)
         ? state
         : [

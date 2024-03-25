@@ -52,18 +52,18 @@ export default function Bot({ bot }) {
   useEffect(() => {
     console.log("triggered : ", processing);
 
-    if (Boolean(currentBot.currentOrder)) {
+    if (Boolean(currentBot?.currentOrder)) {
       if (!processing) {
         setProcessing(true);
         let x = setInterval(
           (runningBot) => {
             console.log("processing order");
 
-            const isActive = store
+            const latestBot = store
               .getState()
-              .bot.find((b) => b.name === currentBot.name).active;
+              .bot.find((b) => b.name === currentBot.name);
 
-            if (!isActive) {
+            if (!latestBot || !latestBot.active) {
               console.log("terminated");
               setCountDown(0);
               setProcessing(false);

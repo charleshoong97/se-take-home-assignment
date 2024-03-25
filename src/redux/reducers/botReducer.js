@@ -5,6 +5,7 @@ import {
   COMPLETE_ORDER,
   OFF_BOT,
   ON_BOT,
+  REMOVE_BOT,
 } from "../constant";
 
 const defaultState = [];
@@ -14,9 +15,12 @@ export const botReducer = (
   { type, payload = { bot: {}, order: {} } }
 ) => {
   const { bot, order } = payload;
+
   switch (type) {
     case ADD_BOT:
       return [...state, bot];
+    case REMOVE_BOT:
+      return state.filter((prev) => prev.name !== bot.name);
     case ON_BOT:
       return state.map((prev) =>
         prev.name === bot.name
