@@ -26,14 +26,16 @@ function Manager({ manager }) {
   };
 
   const handleRemoveBot = (event) => {
-    const lastBot = botList.slice(-1)[0];
+    if (botList.length > 0) {
+      const lastBot = botList.slice(-1)[0];
 
-    dispatch(
-      removeBot({
-        bot: lastBot,
-        order: lastBot.currentOrder,
-      })
-    );
+      dispatch(
+        removeBot({
+          bot: lastBot,
+          order: lastBot.currentOrder,
+        })
+      );
+    }
   };
 
   return (
